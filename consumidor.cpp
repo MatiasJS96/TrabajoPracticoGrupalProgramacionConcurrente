@@ -9,14 +9,16 @@ Consumidor::Consumidor(
     ColaMensajes& cola,
     PoolVRAM& pool,
     Logger& logger,
-    std::atomic<int>& contador
+    int& contador,
+    std::mutex& mutex
 )
 :
 idConsumidor(id),
 cola(cola),
 pool(pool),
 logger(logger),
-contadorFinalizados(contador)
+contadorFinalizados(contador),
+mutexContador(mutex)
 {
 }
 
@@ -31,17 +33,25 @@ void Consumidor::esperar() {
 }
 
 void Consumidor::ejecutar() {
+
     while(true) {
+
         auto trabajo = cola.obtenerTrabajo();
+
         if(trabajo == nullptr){
             if(cola.estaFinalizada()) {
                 break;
             }
             continue;
         }
+
         trabajo->establecerEstado(ASIGNADO_VRAM);
 
-        logger.registrar(trabajo->obtenerId(),Utilidades::prioridadATexto(trabajo->obtenerPrioridad()),
+        logger.registrar(
+            trabajo->obtenerId(),
+            Utilidades::prioridadATexto(
+                trabajo->obtenerPrioridad()
+            ),
             "ASIGNADO_VRAM"
         );
 
@@ -52,15 +62,28 @@ void Consumidor::ejecutar() {
             << trabajo->obtenerId()
             << std::endl;
 
-            pool.asignarSlot();
-            std::this_thread::sleep_for(std::chrono::milliseconds(600));
-            pool.liberarSlot();
+        pool.asignarSlot();
 
-            trabajo->establecerEstado(FINALIZADO);
+        std::this_thread::sleep_for(
+            std::chrono::milliseconds(600)
+        );
 
-            logger.registrar(trabajo->obtenerId(), Utilidades::prioridadATexto(trabajo->obtenerPrioridad()),
+        pool.liberarSlot();
+
+        trabajo->establecerEstado(FINALIZADO);
+
+        logger.registrar(
+            trabajo->obtenerId(),
+            Utilidades::prioridadATexto(
+                trabajo->obtenerPrioridad()
+            ),
             "FINALIZADO"
-            ); contadorFinalizados++;
+        );
+
+        {
+            std::lock_guard<std::mutex> lock(mutexContador);
+            contadorFinalizados++;
+        }
 
         std::cout
             << "[CONSUMIDOR "
@@ -70,4 +93,5 @@ void Consumidor::ejecutar() {
             << " finalizado"
             << std::endl;
     }
+}
 }
