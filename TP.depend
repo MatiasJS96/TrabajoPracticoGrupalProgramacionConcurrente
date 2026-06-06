@@ -1,0 +1,97 @@
+# depslib dependency file v1.0
+1780682896 source:d:\unla\3er año\programación concurrente\tp\cloud computing\tp\main.cpp
+	"GestorRenderizado.h"
+	<iostream>
+	<ctime>
+	<cstdlib>
+
+1780683551 source:d:\unla\3er año\programación concurrente\tp\cloud computing\tp\colamensajes.cpp
+	"ColaMensajes.h"
+	<chrono>
+
+1780681879 d:\unla\3er año\programación concurrente\tp\cloud computing\tp\colamensajes.h
+	<queue>
+	<mutex>
+	<condition_variable>
+	<memory>
+	"Trabajo.h"
+
+1780681598 d:\unla\3er año\programación concurrente\tp\cloud computing\tp\trabajo.h
+	<string>
+	<chrono>
+
+1780682896 source:d:\unla\3er año\programación concurrente\tp\cloud computing\tp\logger.cpp
+	"Logger.h"
+	"Utilidades.h"
+
+1780681819 d:\unla\3er año\programación concurrente\tp\cloud computing\tp\logger.h
+	<fstream>
+	<mutex>
+	<string>
+
+1780681819 d:\unla\3er año\programación concurrente\tp\cloud computing\tp\utilidades.h
+	<string>
+	"Trabajo.h"
+
+1780682141 source:d:\unla\3er año\programación concurrente\tp\cloud computing\tp\trabajo.cpp
+	"Trabajo.h"
+
+1780682027 source:d:\unla\3er año\programación concurrente\tp\cloud computing\tp\utilidades.cpp
+	"Utilidades.h"
+	<chrono>
+	<iomanip>
+	<sstream>
+
+1780682611 source:d:\unla\3er año\programación concurrente\tp\cloud computing\tp\poolvram.cpp
+	"PoolVRAM.h"
+	<chrono>
+	<thread>
+
+1780681598 d:\unla\3er año\programación concurrente\tp\cloud computing\tp\poolvram.h
+	<mutex>
+	<condition_variable>
+
+1780682494 source:d:\unla\3er año\programación concurrente\tp\cloud computing\tp\productor.cpp
+	"Productor.h"
+	"Utilidades.h"
+	<iostream>
+	<memory>
+	<chrono>
+	<thread>
+	<cstdlib>
+
+1780681598 d:\unla\3er año\programación concurrente\tp\cloud computing\tp\productor.h
+	<thread>
+	<atomic>
+	"ColaMensajes.h"
+	"Logger.h"
+
+1780681598 source:d:\unla\3er año\programación concurrente\tp\cloud computing\tp\consumidor.cpp
+	"Consumidor.h"
+	"Utilidades.h"
+	<iostream>
+	<chrono>
+	<thread>
+
+1780681819 d:\unla\3er año\programación concurrente\tp\cloud computing\tp\consumidor.h
+	<thread>
+	<atomic>
+	"ColaMensajes.h"
+	"PoolVRAM.h"
+	"Logger.h"
+
+1780683139 source:d:\unla\3er año\programación concurrente\tp\cloud computing\tp\gestorrenderizado.cpp
+	"GestorRenderizado.h"
+	<iostream>
+	<vector>
+	<memory>
+
+1780681819 d:\unla\3er año\programación concurrente\tp\cloud computing\tp\gestorrenderizado.h
+	<vector>
+	<memory>
+	<atomic>
+	"Productor.h"
+	"Consumidor.h"
+	"PoolVRAM.h"
+	"Logger.h"
+
